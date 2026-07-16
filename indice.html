@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Fecha y Hora</title>
@@ -13,7 +13,6 @@
         justify-content: center;
         font-family: "Times New Roman", Georgia, serif;
     }
-
     #lbl {
         border: 1px solid #c9a789;
         color: #c9a789;
@@ -22,18 +21,15 @@
         line-height: 1.4;
         min-width: 260px;
     }
-
     #dayDate {
         font-size: 18px;
         text-transform: capitalize;
     }
-
     #time {
         font-size: 42px;
         margin: 6px 0;
         letter-spacing: 1px;
     }
-
     #greeting {
         font-size: 15px;
         margin-bottom: 4px;
@@ -46,35 +42,37 @@
         <div id="time"></div>
         <div id="greeting"></div>
     </div>
-
 <script>
-    var dias = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Satuday"];
+    var dias = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     var meses = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
+    
     function actualizar() {
         var ahora = new Date();
-
         var diaSemana = dias[ahora.getDay()];
         var dia = ahora.getDate();
         var mes = meses[ahora.getMonth()];
         var anio = ahora.getFullYear();
-        document.getElementById('dayDate').innerHTML = diaSemana + ", " + dia + " " + mes + ", " + anio;
-
+        
+        // Corregido al formato de fecha estándar en inglés: Wednesday, July 15, 2026
+        document.getElementById('dayDate').innerHTML = diaSemana + ", " + mes + " " + dia + ", " + anio;
+        
         var horas = ahora.getHours();
         var minutos = ahora.getMinutes();
         var ampm = horas >= 12 ? "PM" : "AM";
         var horas12 = horas % 12;
         horas12 = horas12 ? horas12 : 12;
         minutos = minutos < 10 ? "0" + minutos : minutos;
+        
         document.getElementById('time').innerHTML = horas12 + ":" + minutos + " " + ampm;
-
+        
         var saludo;
         if (horas < 12) saludo = "Good Morning 𖹭 ";
         else if (horas < 18) saludo = "Good Afternoon 𖹭 ";
         else saludo = "Good Evening 𖹭";
+        
         document.getElementById('greeting').innerHTML = saludo;
     }
-
+    
     actualizar();
     setInterval(actualizar, 1000);
 </script>
