@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,23 +14,27 @@
         justify-content: center;
         font-family: "Times New Roman", Georgia, serif;
     }
+
     #lbl {
-        border: 1px solid #c9a789;
-        color: #c9a789;
+        border: 1px solid #5B1E2E;
+        color: #5B1E2E;
         padding: 10px 17px;
         text-align: center;
         line-height: 1.3;
         min-width: 160px;
     }
+
     #dayDate {
         font-size: 14px;
         text-transform: capitalize;
     }
+
     #time {
         font-size: 32px;
         margin: 4px 0;
         letter-spacing: 1px;
     }
+
     #greeting {
         font-size: 12px;
         margin-bottom: 2px;
@@ -42,39 +47,57 @@
         <div id="time"></div>
         <div id="greeting"></div>
     </div>
+
 <script>
-    var dias = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var meses = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    
+    var dias = [
+        "Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday"
+    ];
+
+    var meses = [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+    ];
+
     function actualizar() {
         var ahora = new Date();
+
         var diaSemana = dias[ahora.getDay()];
         var dia = ahora.getDate();
         var mes = meses[ahora.getMonth()];
         var anio = ahora.getFullYear();
-        
-        // Corregido al formato de fecha estándar en inglés: Wednesday, July 15, 2026
-        document.getElementById('dayDate').innerHTML = diaSemana + ", " + mes + " " + dia + ", " + anio;
-        
+
+        document.getElementById('dayDate').innerHTML =
+            diaSemana + ", " + mes + " " + dia + ", " + anio;
+
         var horas = ahora.getHours();
         var minutos = ahora.getMinutes();
         var ampm = horas >= 12 ? "PM" : "AM";
+
         var horas12 = horas % 12;
         horas12 = horas12 ? horas12 : 12;
         minutos = minutos < 10 ? "0" + minutos : minutos;
-        
-        document.getElementById('time').innerHTML = horas12 + ":" + minutos + " " + ampm;
-        
+
+        document.getElementById('time').innerHTML =
+            horas12 + ":" + minutos + " " + ampm;
+
         var saludo;
-        if (horas < 12) saludo = "Good Morning 𖹭 ";
-        else if (horas < 18) saludo = "Good Afternoon 𖹭 ";
-        else saludo = "Good Evening 𖹭";
-        
+
+        if (horas < 12) {
+            saludo = "Good Morning 𖹭";
+        } else if (horas < 18) {
+            saludo = "Good Afternoon 𖹭";
+        } else {
+            saludo = "Good Evening 𖹭";
+        }
+
         document.getElementById('greeting').innerHTML = saludo;
     }
-    
+
     actualizar();
     setInterval(actualizar, 1000);
 </script>
 </body>
 </html>
+```
