@@ -2,41 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fecha y Hora</title>
 <style>
-    body {
-        background-color: #ffffff;
+    html, body {
         margin: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
         font-family: "Times New Roman", Georgia, serif;
     }
 
+    /* The label fills the whole frame: frame limits = label limits */
     #lbl {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
         border: 1px solid #5B1E2E;
         color: #5B1E2E;
-        padding: 10px 17px;
+        background: transparent;
+        padding: 0 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        line-height: 1.3;
-        min-width: 160px;
+        line-height: 1.2;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
+    /* Sizes follow the frame height, so it can be resized in Notion */
     #dayDate {
-        font-size: 14px;
+        font-size: clamp(8px, min(14vh, 4vw), 16px);
         text-transform: capitalize;
     }
 
     #time {
-        font-size: 32px;
-        margin: 4px 0;
+        font-size: clamp(12px, min(34vh, 9vw), 40px);
+        margin: 2px 0;
         letter-spacing: 1px;
     }
 
     #greeting {
-        font-size: 12px;
-        margin-bottom: 2px;
+        font-size: clamp(7px, min(11vh, 3.4vw), 13px);
     }
 </style>
 </head>
@@ -67,7 +76,7 @@
         var mes = meses[ahora.getMonth()];
         var anio = ahora.getFullYear();
 
-        document.getElementById('dayDate').innerHTML =
+        document.getElementById('dayDate').textContent =
             diaSemana + ", " + mes + " " + dia + ", " + anio;
 
         var horas = ahora.getHours();
@@ -78,7 +87,7 @@
         horas12 = horas12 ? horas12 : 12;
         minutos = minutos < 10 ? "0" + minutos : minutos;
 
-        document.getElementById('time').innerHTML =
+        document.getElementById('time').textContent =
             horas12 + ":" + minutos + " " + ampm;
 
         var saludo;
@@ -91,7 +100,7 @@
             saludo = "Good Evening 𖹭";
         }
 
-        document.getElementById('greeting').innerHTML = saludo;
+        document.getElementById('greeting').textContent = saludo;
     }
 
     actualizar();
